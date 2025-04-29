@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Filme</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            background: linear-gradient(180deg, #0b132b, #1c2541);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .signup-container {
+            background-color: #1f4068;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #f5f5f5;
+        }
+
+        label {
+            display: block;
+            font-size: 1rem;
+            color: #d1d1d1;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #e0e0e0;
+            color: #333;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: white;
+            background-color: #162447;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background-color: #1b1b2f;
+        }
+
+        .login-link {
+            display: block;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #f5f5f5;
+            text-decoration: none;
+        }
+
+        .login-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h1>Sign Up</h1>
+        <form action="/signup" method="POST" autocomplete="off">
+            <label for="username">Nume utilizator:</label>
+            <input type="text" id="username" name="username" required value="{{ username }}">
+            <label for="password">Parolă:</label>
+            <input type="password" id="password" name="password" required autocomplete="off">
+            <label for="confirm_password">Confirmă parola:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required autocomplete="off">
+            <button type="submit">Creează cont</button>
+        </form>
+        <a href="/login" class="login-link">Ai deja un cont? Conectează-te aici!</a>
+    </div>
+</body>
+</html>
