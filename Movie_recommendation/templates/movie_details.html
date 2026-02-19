@@ -1,0 +1,50 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>{{ movie.title }}</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>{{ movie.title }}</h1>-->
+<!--    <img src="{{ movie.image }}" alt="Image for {{ movie.title }}">-->
+<!--    <p>{{ movie.description }}</p>-->
+<!--    <p>Genuri: {{ movie.genres }}</p>-->
+
+<!--    <div class="rating stars" data-movie-id="{{ movie.movieId }}">-->
+<!--        <h3>Ratează acest film</h3>-->
+<!--        {% for i in range(1, 6) %}-->
+<!--        <input type="radio" id="star-{{ movie.movieId }}-{{ i }}" name="rating-{{ movie.movieId }}" value="{{ 5-i+1 }}">-->
+<!--        <label for="star-{{ movie.movieId }}-{{ i }}">&#9733;</label>-->
+<!--        {% endfor %}-->
+<!--        <button class="submit-rating" data-movie-id="{{ movie.movieId }}">Trimite Rating</button>-->
+<!--    </div>-->
+
+<!--    <script>-->
+<!--        document.addEventListener('DOMContentLoaded', () => {-->
+<!--            const submitButton = document.querySelector('.submit-rating');-->
+<!--            submitButton.addEventListener('click', function() {-->
+<!--                const movieId = this.dataset.movieId;-->
+<!--                const selectedRadio = document.querySelector(`input[name="rating-${movieId}"]:checked`);-->
+<!--                if (selectedRadio) {-->
+<!--                    const ratingValue = selectedRadio.value;-->
+<!--                    fetch('/rate_movie', {-->
+<!--                        method: 'POST',-->
+<!--                        headers: { 'Content-Type': 'application/json' },-->
+<!--                        body: JSON.stringify({-->
+<!--                            user_name: document.body.dataset.username,-->
+<!--                            movie_id: movieId,-->
+<!--                            rating: ratingValue-->
+<!--                        })-->
+<!--                    })-->
+<!--                    .then(response => response.json())-->
+<!--                    .then(data => alert(data.message))-->
+<!--                    .catch(error => console.error('Error:', error));-->
+<!--                } else {-->
+<!--                    alert("Te rugăm să selectezi un rating înainte de a trimite!");-->
+<!--                }-->
+<!--            });-->
+<!--        });-->
+<!--    </script>-->
+<!--</body>-->
+<!--</html>-->

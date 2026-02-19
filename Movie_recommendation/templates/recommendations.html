@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recomandări pentru {{ username }}</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            background: linear-gradient(180deg, #0b132b, #1c2541);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .movies-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .movie {
+            background-color: #1f4068;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .movie img {
+            width: 150px;
+            height: 200px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            margin-bottom: 10px;
+        }
+
+        .movie-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #f5f5f5;
+            margin-top: 10px;
+        }
+
+        .movie-genres {
+            font-size: 0.9rem;
+            color: gray;
+        }
+
+        .rating {
+            margin-top: 10px;
+        }
+
+        .stars-fixed {
+            display: inline-flex;
+            direction: rtl;
+        }
+
+        .stars-fixed span {
+            font-size: 24px;
+            color: gray;
+            margin: 0 2px;
+        }
+
+        .stars-fixed span.filled {
+            color: gold;
+        }
+
+        .rating input[type="radio"] {
+            display: none;
+        }
+
+        .rating {
+            display: inline-flex;
+            direction: rtl;
+        }
+
+        .rating label {
+            font-size: 24px;
+            cursor: pointer;
+            color: gray;
+            transition: color 0.2s ease;
+        }
+
+        .rating input[type="radio"]:checked ~ label {
+            color: green;
+        }
+
+        .rating label:hover,
+        .rating label:hover ~ label {
+            color: blue;
+        }
+
+        .recommend-button {
+            background-color: #162447;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+            margin-top: 30px;
+        }
+
+        .recommend-button:hover {
+            transform: scale(1.05);
+            background-color: #1b1b2f;
+        }
+
+    </style>
+</head>
+<body data-username="{{ username }}">
+
+    <h1>Recomandări pentru {{ username }}</h1>
+
+    <form action="/recommendations/{{ username }}" method="post">
+        <button type="submit" class="recommend-button">Recomandă filme noi</button>
+    </form>
+
+    <h2>Filme Vizualizate</h2>
+    <div class="movies-container">
+      {% for movie in seen_movies %}
+      <div class="movie">
+        <img src="{{ url_for('static', filename='images/' ~ movie.movieId ~ '.jpg') }}"
+             onerror="this.src='{{ url_for('static', filename='images/default.jpg') }}'"
+             alt="{{ movie.title }} poster">
+        <div class="movie-title">{{ movie.title }}</div>
+        <div class="movie-genres">{{ movie.genres }}</div>
+        <div class="rating stars-fixed">
+          {% for i in range(1, 6) %}
+            {% if i > (5 - movie.rating) %}
+            <span class="filled">&#9733;</span>
+            {% else %}
+            <span>&#9733;</span>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <h2>Filme Recomandate</h2>
+    <form method="POST" id="recommendations-form">
+      <div class="movies-container">
+        {% for movie in movies %}
+        <div class="movie">
+        <img src="{{ url_for('static', filename='images/' ~ movie.movieId ~ '.jpg') }}"
+             onerror="this.src='{{ url_for('static', filename='images/default.jpg') }}'"
+             alt="{{ movie.title }} poster">
+        <div class="movie-title">{{ movie.title }}</div>
+        <div class="movie-genres">{{ movie.genres }}</div>
+        <div class="rating stars" data-movie-id="{{ movie.movieId }}">
+            {% for i in range(1, 6) %}
+            <input type="radio" id="star-{{ movie.movieId }}-{{ i }}" name="rating-{{ movie.movieId }}" value="{{ 5-i+1 }}">
+            <label for="star-{{ movie.movieId }}-{{ i }}">&#9733;</label>
+            {% endfor %}
+            <button class="submit-rating" data-movie-id="{{ movie.movieId }}">Trimite Rating</button>
+        </div>
+        </div>
+        {% endfor %}
+      </div>
+    </form>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

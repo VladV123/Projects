@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Filme</title>
+<style>
+    /* Stiluri generale pentru corp */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        color: white;
+        background: linear-gradient(180deg, #0b132b, #1c2541); /* Gradient pentru fundal */
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden; /* Previne scrollbar-ul */
+        position: relative;
+    }
+
+    /* Titlu principal */
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        color: #f5f5f5;
+        text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.4);
+        z-index: 10; /* Asigură-te că titlul rămâne vizibil peste stele */
+        position: relative;
+    }
+
+    /* Paragraf */
+    p {
+        font-size: 1.2rem;
+        color: #d1d1d1;
+        margin-bottom: 30px;
+        text-align: center;
+        z-index: 10; /* Asigură-te că textul rămâne vizibil peste stele */
+        position: relative;
+    }
+
+    /* Container pentru butoane */
+    .buttons-container {
+        display: flex;
+        gap: 20px;
+        z-index: 10; /* Asigură-te că butoanele sunt funcționale */
+        position: relative;
+    }
+
+    /* Stil pentru butoane */
+    button {
+        padding: 15px 30px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 5px;
+        background-color: #1f4068;
+        color: white;
+        cursor: pointer;
+        transition: transform 0.2s, background-color 0.3s;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        position: relative; /* Asigură poziționarea corectă peste stele */
+    }
+
+    button:hover {
+        transform: scale(1.1);
+        background-color: #162447;
+    }
+
+    /* Container pentru stele */
+    .stars {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        overflow: hidden;
+        z-index: 1; /* Stelele vor fi sub conținut */
+    }
+
+    /* Stil pentru fiecare stea */
+    .star {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: white;
+        opacity: 0.8;
+        border-radius: 50%;
+        animation: move 5s linear infinite;
+        pointer-events: none; /* Previne interferența cu interacțiunile utilizatorului */
+    }
+
+    /* Animație pentru stele */
+    @keyframes move {
+        0% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(100vh);
+            opacity: 0;
+        }
+    }
+</style>
+
+</head>
+<body>
+    <h1>Bine ai venit la Filmele Tale!</h1>
+    <p>Conectează-te pentru a vedea recomandările tale personalizate sau creează un cont nou!</p>
+    <div class="buttons-container">
+        <a href="/login"><button>Login</button></a>
+        <a href="/signup"><button>Sign Up</button></a>
+    </div>
+    <div class="stars">
+<!--         Stelute generate -->
+      <script>
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 90 + 'vw';
+                star.style.top = Math.random() * 90 + 'vh';
+                star.style.animationDuration = Math.random() * 3 + 2 + 's';
+                star.style.pointerEvents = 'none'; // Asigură că stelele nu sunt interactive
+                document.querySelector('.stars').appendChild(star);
+            }
+        </script>
+    </div>
+</body>
+</html>
+<!--<!DOCTYPE html>-->
+<!--<html lang="ro">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Home</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Bine ai venit!</h1>-->
+<!--    <p>Alege una dintre opțiunile de mai jos:</p>-->
+<!--    <a href="/login"><button>Login</button></a>-->
+<!--    <a href="/signup"><button>Sign Up</button></a>-->
+<!--</body>-->
+<!--</html>-->

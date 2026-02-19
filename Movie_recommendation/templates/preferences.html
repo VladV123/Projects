@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selectează Preferințe - Filme</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            background: linear-gradient(180deg, #0b132b, #1c2541);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .preferences-container {
+            background-color: #1f4068;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #f5f5f5;
+        }
+
+        .movies {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .movie {
+            background-color: #162447;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 150px;
+        }
+
+        .movie img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .movie-title {
+            margin-top: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #f5f5f5;
+        }
+
+        .movie-genres {
+            margin-top: 5px;
+            font-size: 0.9rem;
+            color: #d1d1d1;
+        }
+
+        input[type="checkbox"] {
+            margin-top: 10px;
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: white;
+            background-color: #1b1b2f;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background-color: #1f4068;
+        }
+    </style>
+</head>
+<body>
+    <div class="preferences-container">
+        <h1>Selectează Filmele Preferate</h1>
+        <form method="POST">
+            <div class="movies">
+                {% for movie in movies %}
+                <div class="movie">
+                <img src="{{ url_for('static', filename='images/' ~ movie.id ~ '.jpg') }}"
+                     onerror="this.src='{{ url_for('static', filename='images/default.jpg') }}'"
+                     alt="{{ movie.title }} poster">
+                    <div class="movie-title">{{ movie.title }}</div>
+                    <div class="movie-genres">{{ movie.genres }}</div>
+                    <input type="checkbox" name="movies" value="{{ movie.id }}"> Selectează
+                </div>
+                {% endfor %}
+            </div>
+            <button type="submit">Trimite</button>
+        </form>
+    </div>
+</body>
+</html>
