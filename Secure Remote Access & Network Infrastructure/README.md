@@ -32,7 +32,7 @@ To ensure the target workstation always receives the same local IP address, I co
 Instead of opening port 3389 on the router's WAN (which is highly vulnerable to brute-force attacks), RDP is completely blocked from the outside. 
 * To access the workstation, the remote client must first establish the VPN connection.
 * Once inside the VPN tunnel, the client uses the workstation's local, static IP to initiate the RDP session securely.
-
+![alt text](Remote desktop.png)
 ---
 
 ##  Key Takeaways & Cloud Relevance
