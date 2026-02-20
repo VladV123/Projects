@@ -26,6 +26,7 @@ I configured the Asus router to act as an OpenVPN server. This creates a secure,
 ### 2. DHCP Static IP Reservation (MAC Binding)
 To ensure the target workstation always receives the same local IP address, I configured a DHCP binding rule. The router matches the workstation's MAC address and permanently assigns it a specific local IP (e.g., `192.168.x.x`).
 * This is crucial for reliable remote access, as the RDP connection relies on a fixed, predictable IP.
+![alt text](DHCP.png)
 
 ### 3. Securing Remote Desktop (RDP) via Zero Trust
 Instead of opening port 3389 on the router's WAN (which is highly vulnerable to brute-force attacks), RDP is completely blocked from the outside. 
