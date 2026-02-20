@@ -21,7 +21,7 @@ I configured the Asus router to act as an OpenVPN server. This creates a secure,
 * **Protocol:** UDP (for faster performance) / Port 1194.
 * **Encryption:** AES-based encryption configured via the router's VPN interface.
 * 
-![alt text](image-1.png)
+![alt text](image.png)
 
 ### 2. DHCP Static IP Reservation (MAC Binding)
 To ensure the target workstation always receives the same local IP address, I configured a DHCP binding rule. The router matches the workstation's MAC address and permanently assigns it a specific local IP (e.g., `192.168.x.x`).
